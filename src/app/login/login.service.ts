@@ -16,16 +16,35 @@ export class LoginService{
     return this.http.get(myFirebaseUrl + serverData.serverName + ".json");
   }
 
-  signUp(serverData: ServerData) {
-    this.signIn(serverData).subscribe( responseData => {
+  signUp(serverData: ServerData): Promise<any> {
+
+    return new Promise<any>( (resolve, reject) => {
+      this.signIn(serverData).subscribe(responseData => {
+        if (responseData === null) {
+          this.http.put(myFirebaseUrl + serverData.serverName + '.json', {metaData: serverData})
+            .subscribe(putData => {
+              resolve(putData);
+            })
+        } else {
+          reject("already");
+        } // end else
+      }); // end this.signIn.subscribe()
+    }); // end return promise
+  } // end signUp function
+}
+
+      /*
       if (responseData === null) {
         this.http.put( myFirebaseUrl + serverData.serverName + '.json', {metaData: serverData})
           .subscribe( putData => {
-            console.log(putData);
+            return new Promise<any>( (resolve, reject) => {
+              resolve(putData);
+            });
           })
       } else {
-        console.log("Böyle bir sunucu zaten var..");
+        return new Promise<any>( (resolve, reject) => {
+          reject("")
+        })
       }
-    })
-  }
-}
+
+    })*/

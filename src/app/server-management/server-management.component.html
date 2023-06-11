@@ -1,0 +1,12 @@
+<div class="d-flex flex-row justify-content-center">
+  <router-outlet
+    ></router-outlet>
+  <ng-template  #warningTemplate>
+
+    <p
+      class="warning-template">Please
+      <a routerLink="/login/signIn" class="btn-link">Sign In</a> Or
+      <a routerLink="/login/signUp" class="btn-link">Sign Up</a>
+    </p>
+  </ng-template>
+</div>

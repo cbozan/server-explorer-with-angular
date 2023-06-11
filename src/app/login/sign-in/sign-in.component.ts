@@ -3,6 +3,8 @@ import {NgForm} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "../login.service";
 import {Router} from "@angular/router";
+import {ServerService} from "../../server.service";
+import {ServerModel} from "../../server-management/server.model";
 
 @Component({
   selector: 'app-sign-in',
@@ -14,6 +16,7 @@ export class SignInComponent implements OnInit{
   @ViewChild("signInForm") signInForm: NgForm;
 
   constructor(private loginService: LoginService,
+              private serverService: ServerService,
               private router: Router) {
 
   }
@@ -27,17 +30,22 @@ export class SignInComponent implements OnInit{
     console.log("serverName: ", serverName);
     console.log("password: ", password);
 
-    this.signInForm.reset();
-
     this.loginService.signIn({serverName: serverName, password: password})
       .subscribe(responseData => {
         if (responseData == null) {
-          console.log("Böyle bir sunucu yok, oluşturabilirisiniz...");
+          alert("Server not found! You can create a new server....");
+          this.signInForm.reset();
+          this.router.navigate(['/login/signUp']);
         } else if (responseData['metaData']['password'] !== password) {
-          console.log('Parola yanlış.');
+          alert("Password is incorrect");
         } else {
           // CanActivate için değişken tanımla
           // ve router ile server sayfasına yönlendir.
+          this.signInForm.reset();
+          this.serverService.activeServerSubject.next(
+            new ServerModel(responseData['metaData']['serverName'],responseData['metaData']['password'])
+          );
+          this.router.navigate(['server-management', responseData['metaData']['serverName']]);
         }
       });
 

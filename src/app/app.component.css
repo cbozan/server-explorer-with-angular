@@ -1,0 +1,11 @@
+.logo {
+  display: inline;
+  background-color: #033fc7;
+  padding: 20px 144px;
+  color: white;
+  border-radius: 20px;
+}
+
+.container {
+  margin-top: 40px;
+}

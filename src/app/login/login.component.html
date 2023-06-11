@@ -1,6 +1,6 @@
-<div class="container">
+<div class="d-flex flex-column justify-content-center" id="tab-bar">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col">
       <ul class="nav nav-pills justify-content-center">
         <li class="nav-item">
           <a routerLink="/login/signIn" class="nav-link" routerLinkActive="active">Sign in</a>
@@ -9,11 +9,7 @@
           <a routerLink="/login/signUp" class="nav-link" routerLinkActive="active">Sign up</a>
         </li>
       </ul>
-      <hr>
     </div>
   </div>
-
-  <div class="row">
-    <router-outlet></router-outlet>
-  </div>
 </div>
+<router-outlet></router-outlet>
