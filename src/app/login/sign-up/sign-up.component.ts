@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {LoginService} from "../login.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -9,6 +11,9 @@ import {NgForm} from "@angular/forms";
 export class SignUpComponent implements OnInit{
 
   @ViewChild('signUpForm') signUpForm: NgForm;
+
+  constructor(private loginService: LoginService) {
+  }
   ngOnInit(): void {
   }
 
@@ -20,6 +25,14 @@ export class SignUpComponent implements OnInit{
     console.log("serverName: ", serverName);
     console.log("password: ", password);
     console.log("passwordAgain: ", passwordAgain);
+
+    if (password === passwordAgain) {
+      this.loginService.signUp({serverName, password});
+    } else {
+      console.log("parolalar uyuşmuyor..");
+    }
+
+
 
     this.signUpForm.reset();
   }

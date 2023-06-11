@@ -1,5 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {LoginService} from "../login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
@@ -9,6 +12,11 @@ import {NgForm} from "@angular/forms";
 export class SignInComponent implements OnInit{
 
   @ViewChild("signInForm") signInForm: NgForm;
+
+  constructor(private loginService: LoginService,
+              private router: Router) {
+
+  }
   ngOnInit(): void {
   }
 
@@ -20,6 +28,23 @@ export class SignInComponent implements OnInit{
     console.log("password: ", password);
 
     this.signInForm.reset();
+
+    this.loginService.signIn({serverName: serverName, password: password})
+      .subscribe(responseData => {
+        if (responseData == null) {
+          console.log("Böyle bir sunucu yok, oluşturabilirisiniz...");
+        } else if (responseData['metaData']['password'] !== password) {
+          console.log('Parola yanlış.');
+        } else {
+          // CanActivate için değişken tanımla
+          // ve router ile server sayfasına yönlendir.
+        }
+      });
+
+    /*this.http.put('' + serverName + ".json", {pass: password})
+      .subscribe( responseData => {
+        console.log(responseData);
+      })*/
   }
 
 }
