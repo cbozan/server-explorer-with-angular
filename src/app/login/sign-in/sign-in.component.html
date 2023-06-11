@@ -1,0 +1,13 @@
+<div class="col-sm-4">
+  <form (ngSubmit)="onSignInSubmit()" #signInForm="ngForm">
+    <div class="form-group">
+      <label for="server-name">Server Name</label>
+      <input type="text" class="form-control" id="server-name" name="serverName" ngModel>
+    </div>
+    <div class="from-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" name="password" ngModel>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign In</button>
+  </form>
+</div>
