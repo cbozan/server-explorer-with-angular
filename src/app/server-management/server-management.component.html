@@ -1,12 +1,16 @@
-<div class="d-flex flex-row justify-content-center">
-  <router-outlet
-    ></router-outlet>
-  <ng-template  #warningTemplate>
+<router-outlet></router-outlet><!-- *ngIf="activeServer else warningTemplate"-->
 
+
+<ng-template #warningTemplate>
+  <div class="d-flex flex-row justify-content-center">
     <p
       class="warning-template">Please
       <a routerLink="/login/signIn" class="btn-link">Sign In</a> Or
       <a routerLink="/login/signUp" class="btn-link">Sign Up</a>
     </p>
-  </ng-template>
-</div>
+  </div>
+</ng-template>
+
+
+
+

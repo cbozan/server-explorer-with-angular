@@ -8,6 +8,8 @@ import {ActivatedRoute, Params} from "@angular/router";
 })
 export class ServerComponent implements OnInit{
   serverName: string = "belirsiz";
+  searchText: string = "";
+
   constructor(private route: ActivatedRoute) {
   }
 
@@ -15,5 +17,9 @@ export class ServerComponent implements OnInit{
     this.route.params.subscribe( (params: Params) => {
       this.serverName = params['serverName'];
     })
+  }
+
+  search() {
+    console.log(this.searchText);
   }
 }

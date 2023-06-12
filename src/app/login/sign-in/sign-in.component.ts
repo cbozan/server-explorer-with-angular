@@ -42,9 +42,8 @@ export class SignInComponent implements OnInit{
           // CanActivate için değişken tanımla
           // ve router ile server sayfasına yönlendir.
           this.signInForm.reset();
-          this.serverService.activeServerSubject.next(
-            new ServerModel(responseData['metaData']['serverName'],responseData['metaData']['password'])
-          );
+          const serverModel = new ServerModel(responseData['metaData']['serverName'],responseData['metaData']['password']);
+          this.serverService.activeServer = serverModel;
           this.router.navigate(['server-management', responseData['metaData']['serverName']]);
         }
       });

@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ServerManagementComponent } from './server-management/server-management.component';
 import { ServerComponent } from './server-management/server/server.component';
+import { DirectoryComponent } from './server-management/server/directory/directory.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ServerComponent } from './server-management/server/server.component';
     SignInComponent,
     SignUpComponent,
     ServerManagementComponent,
-    ServerComponent
+    ServerComponent,
+    DirectoryComponent
   ],
   imports: [
     BrowserModule,

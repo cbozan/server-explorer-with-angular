@@ -1,0 +1,56 @@
+<div *ngFor="let element of elements">
+  <div *ngIf="isEditable else editable">
+    <div class="col-sm-9" (click)="explorer()">
+      <div class="col-sm-4">
+        {{element.name}}
+      </div>
+      <div class="col-sm-4">
+        {{element.id}}
+      </div>
+      <div class="col-sm-4">
+        {{element.date}}
+      </div>
+      <div class="col-sm-4">
+        {{element.fileCount}}
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="col-sm-6">
+        <button class="btn btn-primary" (click)="onEdit()">Edit</button>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<ng-template #editable>
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-sm-4">
+        <input type="text" class="form-control" [(ngModel)]="name">
+      </div>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" [(ngModel)]="id">
+      </div>
+      <div class="col-sm-3">
+        <input type="text" class="form-control" [(ngModel)]="date">
+      </div>
+      <div class="col-sm-2">
+        <input type="text" class="form-control" [(ngModel)]="fileCount">
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="col-sm-6">
+        <button class="btn btn-primary" (click)="onSave()">Save</button>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
