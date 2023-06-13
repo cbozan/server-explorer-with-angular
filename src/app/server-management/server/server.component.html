@@ -1,19 +1,24 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb"> <!-- use *ngFor with pathArray -->
-    <li class="breadcrumb-item"><a href="#">ServerName</a></li>
-    <li class="breadcrumb-item"><a href="#">Directory</a></li>
-    <li class="breadcrumb-item active" aria-current="page">AnotherDirectory</li>
-  </ol>
-</nav>
-
-<h4>Filter</h4>
-
-<div class="row">
-  <div class="form-group col-md-3">
-    <label for="search-box">Search</label>
-    <input type="search" class="form-control" id="search-box" [(ngModel)]="searchText"
-           (search)="search()">
+<div class="container">
+  <div class="filter-content">
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label for="search-box">Search</label>
+        <input type="search" class="form-control" id="search-box" [(ngModel)]="searchText"
+               (search)="search()">
+      </div>
+    </div>
   </div>
+
+  <div class="path-wrapper">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb"> <!-- use *ngFor with pathArray -->
+        <li class="breadcrumb-item"><a href="#">ServerName</a></li>
+        <li class="breadcrumb-item"><a href="#">Directory</a></li>
+        <li class="breadcrumb-item active" aria-current="page">AnotherDirectory</li>
+      </ol>
+    </nav>
+  </div>
+
 </div>
 
 <app-directory></app-directory>

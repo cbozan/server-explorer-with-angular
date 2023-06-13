@@ -20,8 +20,8 @@ export class DirectoryComponent {
     {name: "akd", id: 1, date: "akdf", fileCount: 12},];
 
 
-  explorer() {
-    console.log("explorer function");
+  explorer(id: string) {
+    console.log("explorer ", id);
   }
 
   onEdit() {
@@ -38,5 +38,9 @@ export class DirectoryComponent {
 
   onCancel() {
     console.log("onCancel function");
+  }
+
+  sort(scope: string) {
+    console.log("sorting with ", scope);
   }
 }
