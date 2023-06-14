@@ -51,8 +51,9 @@
   </div>
 
   <app-directory
-    *ngFor="let element of elements; let i = index;"
-    [directory]="element"
-    [isEditable]="element === directoryService.editableDirectory"></app-directory>
+    *ngFor="let directory of directories; let i = index;"
+    [directory]="directory"
+    [index]="i"
+    [isEditable]="directory === directoryService.editableDirectory"></app-directory>
 
 </div>

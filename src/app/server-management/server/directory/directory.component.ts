@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DirectoryModel} from "./directory.model";
 import {DirectoryService} from "./directory.service";
+import {ServerService} from "../../../server.service";
 
 @Component({
   selector: 'app-directory',
@@ -10,6 +11,7 @@ import {DirectoryService} from "./directory.service";
 export class DirectoryComponent implements OnInit {
 
   @Input() directory: DirectoryModel;
+  @Input() index: number;
   @Input() isEditable: boolean = false;
 
   name: string = "";
@@ -17,7 +19,8 @@ export class DirectoryComponent implements OnInit {
   date: string = "";
   size: number = 0;
 
-  constructor(private directoryService: DirectoryService) {
+  constructor(private directoryService: DirectoryService,
+              private serverService: ServerService) {
   }
 
   ngOnInit() {
@@ -37,13 +40,19 @@ export class DirectoryComponent implements OnInit {
   }
 
   onDelete() {
-    // Silme işlemi servis üzerinde gerçekleştirilecek
-    console.log("onDelete metodu, fakat etkisiz method");
+    this.serverService.deleteDirectory(this.index);
+    console.log("onDelete function");
   }
 
   onSave() {
-    // Güncelleme işlemi servis üzerinde gerçekleştirilecek
-    console.log("onSave metodu, fakat etkisiz method");
+    this.directory.id = this.id;
+    this.directory.name = this.name;
+    this.directory.date = this.date;
+    this.directory.size = this.size;
+
+    this.serverService.setDirectory(this.index, this.directory);
+    this.directoryService.editableDirectory = null;
+    console.log("onSave function");
   }
 
   onCancel() {
