@@ -20,5 +20,39 @@
   </div>
 
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <div class="row">
+        <div class="col-2" (click)="sort('id')">
+          ID
+        </div>
+        <div class="col-5" (click)="sort('name')">
+          Name
+        </div>
+        <div class="col-3" (click)="sort('date')">
+          Date
+        </div>
+        <div class="col-2"(click)="sort('size')">
+          Size
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="row">
+        <div class="col">
+          Edit
+        </div>
+        <div class="col">
+          Delete
+        </div>
+      </div>
+    </div>
+  </div>
 
-<app-directory></app-directory>
+  <app-directory
+    *ngFor="let element of elements; let i = index;"
+    [directory]="element"
+    [isEditable]="element === directoryService.editableDirectory"></app-directory>
+
+</div>

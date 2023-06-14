@@ -1,71 +1,103 @@
-<div class="container">
-  <div class="row">
-    <div class="col-9">
-      <div class="row">
-        <div class="col-2" (click)="sort('id')">
-          ID
-        </div>
-        <div class="col-5" (click)="sort('name')">
-          Name
-        </div>
-        <div class="col-3" (click)="sort('date')">
-          Date
-        </div>
-        <div class="col-2"(click)="sort('size')">
-          Size
-        </div>
+<div class="row" *ngIf="!isEditable else editable">
+  <div class="col-9">
+    <div class="row" (click)="explorer()">
+      <div class="col-2">
+        {{directory.id}}
       </div>
-    </div>
-    <div class="col-3">
-      <div class="row">
-        <div class="col">
-          Edit
-        </div>
-        <div class="col">
-          Delete
-        </div>
+      <div class="col-5">
+        {{directory.name}}
+      </div>
+      <div class="col-3">
+        {{directory.date}}
+      </div>
+      <div class="col-2">
+        {{directory.size}}
       </div>
     </div>
   </div>
-
-  <div class="row" *ngFor="let element of elements">
-    <div class="col-9">
-      <div class="row" (click)="explorer(element['name'])">
-        <div class="col-2">
-          {{element.id}}
-        </div>
-        <div class="col-5">
-          {{element.name}}
-        </div>
-        <div class="col-3">
-          {{element.date}}
-        </div>
-        <div class="col-2">
-          {{element.fileCount}}
-        </div>
+  <div class="col-3">
+    <div class="row">
+      <div class="col">
+        <button
+          class="btn btn-primary"
+          (click)="onEdit()"
+        >Edit
+        </button>
       </div>
-    </div>
-    <div class="col-3">
-      <div class="row">
-        <div class="col">
-          <button
-            class="btn btn-primary"
-            (click)="onEdit()"
-          >Edit
-          </button>
-        </div>
 
-        <div class="col">
-          <button
-            class="btn btn-danger"
-            (click)="onDelete()"
-          >Delete
-          </button>
-        </div>
+      <div class="col">
+        <button
+          class="btn btn-danger"
+          (click)="onDelete()"
+        >Delete
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+  <!-- Form terk edildiğinde uyarı vermesi için candeactivate kullan -->
+<ng-template #editable>
+  <form>
+   <div class="row">
+      <div class="col-9">
+        <div class="row">
+          <div class="col-2">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="id"
+              name="id"
+              [disabled]="true">
+          </div>
+          <div class="col-5">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="name"
+              name="name"
+              [disabled]="false">
+          </div>
+          <div class="col-3">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="date"
+              name="date"
+              [disabled]="true">
+          </div>
+          <div class="col-2">
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="size"
+              name="size"
+              [disabled]="true">
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="row">
+          <div class="col">
+            <button
+              class="btn btn-primary"
+              (click)="onSave()"
+            >Save
+            </button>
+          </div>
+
+          <div class="col">
+            <button
+              class="btn btn-danger"
+              (click)="onCancel()"
+            >Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
 
 
 <!--

@@ -1,46 +1,57 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {DirectoryModel} from "./directory.model";
+import {DirectoryService} from "./directory.service";
 
 @Component({
   selector: 'app-directory',
   templateUrl: './directory.component.html',
   styleUrls: ['./directory.component.css']
 })
-export class DirectoryComponent {
-  isEditable: boolean = true;
+export class DirectoryComponent implements OnInit {
+
+  @Input() directory: DirectoryModel;
+  @Input() isEditable: boolean = false;
+
   name: string = "";
   id: number = 0;
   date: string = "";
-  fileCount: number = 0;
+  size: number = 0;
 
-  elements = [
-    {name: "akd", id: 1, date: "akdf", fileCount: 12},
-    {name: "akd", id: 1, date: "akdf", fileCount: 12},
-    {name: "akd", id: 1, date: "akdf", fileCount: 12},
-    {name: "akd", id: 1, date: "akdf", fileCount: 12},
-    {name: "akd", id: 1, date: "akdf", fileCount: 12},];
+  constructor(private directoryService: DirectoryService) {
+  }
 
+  ngOnInit() {
+    this.name = this.directory.name;
+    this.id = this.directory.id;
+    this.date = this.directory.date;
+    this.size = this.directory.size;
+  }
 
-  explorer(id: string) {
-    console.log("explorer ", id);
+  explorer() {
+    console.log("explorer ", this.id);
   }
 
   onEdit() {
     console.log("onEdit function");
+    this.directoryService.editableDirectory = this.directory;
   }
 
   onDelete() {
-    console.log("onDelete function");
+    // Silme işlemi servis üzerinde gerçekleştirilecek
+    console.log("onDelete metodu, fakat etkisiz method");
   }
 
   onSave() {
-    console.log("onSave function");
+    // Güncelleme işlemi servis üzerinde gerçekleştirilecek
+    console.log("onSave metodu, fakat etkisiz method");
   }
 
   onCancel() {
-    console.log("onCancel function");
-  }
+    this.name = this.directory.name;
+    this.id = this.directory.id;
+    this.date = this.directory.date;
+    this.size = this.directory.size;
 
-  sort(scope: string) {
-    console.log("sorting with ", scope);
+    this.directoryService.editableDirectory = null;
   }
 }
