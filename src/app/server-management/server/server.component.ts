@@ -13,6 +13,8 @@ import {ServerService} from "../../server.service";
 export class ServerComponent implements OnInit{
   serverName: string = "belirsiz";
   searchText: string = "";
+  scope: string = "id";
+  orderDirection: boolean = true;
 
   directories: DirectoryModel[];
 
@@ -32,11 +34,16 @@ export class ServerComponent implements OnInit{
     })
   }
 
-  search() {
-    console.log(this.searchText);
+  search(searchText: string) {
+    this.searchText = searchText;
   }
 
   sort(scope: string) {
-    console.log("sorting with ", scope);
+    if (this.scope === scope) {
+      this.orderDirection = !this.orderDirection;
+    } else {
+      this.scope = scope;
+      this.orderDirection = true;
+    }
   }
 }

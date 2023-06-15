@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { ServerManagementComponent } from './server-management/server-management.component';
 import { ServerComponent } from './server-management/server/server.component';
 import { DirectoryComponent } from './server-management/server/directory/directory.component';
+import {SortingPipe} from "./server-management/server/sorting.pipe";
+import {FilterPipe} from "./server-management/server/filter.pipe";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { DirectoryComponent } from './server-management/server/directory/directo
     SignUpComponent,
     ServerManagementComponent,
     ServerComponent,
-    DirectoryComponent
+    DirectoryComponent,
+    SortingPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

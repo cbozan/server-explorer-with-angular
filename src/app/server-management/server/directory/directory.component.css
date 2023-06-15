@@ -1,1 +1,13 @@
+.directory {
+  padding: 8px 5px;
+}
 
+.directory-action {
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.directory-action:hover {
+  color: orange;
+  cursor: pointer;
+}

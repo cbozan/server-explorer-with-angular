@@ -1,5 +1,5 @@
-<div class="row" *ngIf="!isEditable else editable">
-  <div class="col-9">
+<div class="row directory" *ngIf="!isEditable else editable">
+  <div class="col-9 directory-action">
     <div class="row" (click)="explorer()">
       <div class="col-2">
         {{directory.id}}
@@ -38,7 +38,7 @@
 
   <!-- Form terk edildiğinde uyarı vermesi için candeactivate kullan -->
 <ng-template #editable>
- <div class="row">
+ <div class="row directory">
     <div class="col-9">
       <div class="row">
         <div class="col-2">
