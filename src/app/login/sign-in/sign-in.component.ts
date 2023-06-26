@@ -1,6 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
 import {LoginService} from "../login.service";
 import {Router} from "@angular/router";
 import {ServerService} from "../../server.service";
@@ -11,7 +10,7 @@ import {ServerModel} from "../../server-management/server.model";
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit{
+export class SignInComponent implements OnInit, OnDestroy{
 
   @ViewChild("signInForm") signInForm: NgForm;
 
@@ -21,6 +20,12 @@ export class SignInComponent implements OnInit{
 
   }
   ngOnInit(): void {
+    console.log("SignIn login.......");
+
+    if (this.serverService.getActiveServer()) {
+      this.router.navigate(["server-management", this.serverService.getActiveServer()['_serverName']])
+    }
+    console.log("dış");
   }
 
   onSignInSubmit() {
@@ -41,7 +46,7 @@ export class SignInComponent implements OnInit{
         } else { // password is correct
           this.signInForm.reset();
           const serverModel = new ServerModel(responseData['metaData']['serverName'],responseData['metaData']['password']);
-          this.serverService.activeServer = serverModel;
+          this.serverService.setActiveServer(serverModel);
           this.router.navigate(['server-management', responseData['metaData']['serverName']]);
         }
       });
@@ -50,6 +55,10 @@ export class SignInComponent implements OnInit{
       .subscribe( responseData => {
         console.log(responseData);
       })*/
+  }
+
+  ngOnDestroy() {
+    console.log("SignIn Destroy.....");
   }
 
 }

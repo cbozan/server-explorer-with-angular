@@ -16,7 +16,7 @@ export class ServerManagementComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.activeServer = this.serverService.activeServer;
+    this.activeServer = this.serverService.getActiveServer();
   }
 
 

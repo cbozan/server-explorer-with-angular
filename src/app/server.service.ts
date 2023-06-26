@@ -1,11 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Observable, Subject} from "rxjs";
+import {Injectable, OnInit} from "@angular/core";
+import {Subject} from "rxjs";
 import {ServerModel} from "./server-management/server.model";
 import {DirectoryModel} from "./server-management/server/directory/directory.model";
 
 @Injectable()
-export class ServerService {
-  activeServer: ServerModel;
+export class ServerService implements OnInit{
   directoryRemovedSubject: Subject<DirectoryModel[]> = new Subject<DirectoryModel[]>();
 
   private directories: DirectoryModel[] = [
@@ -17,6 +16,7 @@ export class ServerService {
   ];
 
   ngOnInit() {
+    localStorage.getItem("activeServer")
     // this.directories = getData from firebase
   }
 
@@ -35,6 +35,15 @@ export class ServerService {
   deleteDirectory(index: number) {
     this.directories.splice(index, 1);
     this.directoryRemovedSubject.next(this.getDirectories());
+  }
+
+  setActiveServer(activeServer: ServerModel) {
+    sessionStorage.setItem("activeServer", JSON.stringify(activeServer));
+  }
+
+  getActiveServer() {
+    console.log(JSON.parse(sessionStorage.getItem("activeServer")));
+    return JSON.parse(sessionStorage.getItem("activeServer"));
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ServerService} from "./server.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,12 @@ import {ServerService} from "./server.service";
   providers: [ServerService]
 })
 export class AppComponent {
-  title = 'server-explorer-with-angular';
+
+  constructor(public serverService: ServerService,
+              private router: Router) {
+  }
+  logout() {
+    this.serverService.setActiveServer(null);
+    this.router.navigate(["/"]);
+  }
 }
