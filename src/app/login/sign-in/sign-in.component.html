@@ -2,12 +2,26 @@
   <form (ngSubmit)="onSignInSubmit()" #signInForm="ngForm">
     <div class="form-group">
       <label for="server-name">Server Name</label>
-      <input type="text" class="form-control" id="server-name" name="serverName" ngModel>
+      <input
+        type="text"
+        class="form-control"
+        id="server-name"
+        name="serverName"
+        ngModel #name="ngModel"
+        required>
+      <span class="text-danger" *ngIf="name.touched && name.invalid">server name is required</span>
     </div>
     <div class="from-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" name="password" ngModel>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        ngModel #pass="ngModel"
+        required>
+      <span class="text-danger" *ngIf="pass.touched && pass.invalid">password is required</span>
     </div>
-    <button type="submit" class="btn btn-primary">Sign In</button>
+    <button type="submit" class="btn btn-primary" [disabled]="signInForm.invalid">Sign In</button>
   </form>
 </div>

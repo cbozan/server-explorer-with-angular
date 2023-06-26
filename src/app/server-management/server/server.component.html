@@ -4,9 +4,10 @@
       <div class="form-group col-md-3">
         <label for="search-box">Search</label>
         <input type="search" class="form-control" id="search-box"
-               (search)="search($event.value)">
+               (search)="search($event)">
       </div>
     </div>
+    <span>Scope: {{scope}}</span>
   </div>
 
   <div class="path-wrapper">

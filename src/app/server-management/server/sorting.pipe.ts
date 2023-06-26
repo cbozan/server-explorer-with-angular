@@ -8,7 +8,7 @@ export class SortingPipe implements PipeTransform {
       orderDirectionOperator = -1;
     }
 
-    value.sort( (a, b) => {
+    const newValue = value.sort( (a, b) => {
       if (a[scope] < b[scope]) {
         return -1 * orderDirectionOperator;
       } else if (a[scope] > b[scope]) {
@@ -18,7 +18,7 @@ export class SortingPipe implements PipeTransform {
       return 0;
     });
 
-    return value;
+    return newValue;
   }
 
 }

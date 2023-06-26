@@ -27,8 +27,8 @@ export class SignInComponent implements OnInit{
     const serverName = this.signInForm.value['serverName'];
     const password = this.signInForm.value['password'];
 
-    console.log("serverName: ", serverName);
-    console.log("password: ", password);
+    // console.log("serverName: ", serverName);
+    // console.log("password: ", password);
 
     this.loginService.signIn({serverName: serverName, password: password})
       .subscribe(responseData => {
@@ -38,9 +38,7 @@ export class SignInComponent implements OnInit{
           this.router.navigate(['/login/signUp']);
         } else if (responseData['metaData']['password'] !== password) {
           alert("Password is incorrect");
-        } else {
-          // CanActivate için değişken tanımla
-          // ve router ile server sayfasına yönlendir.
+        } else { // password is correct
           this.signInForm.reset();
           const serverModel = new ServerModel(responseData['metaData']['serverName'],responseData['metaData']['password']);
           this.serverService.activeServer = serverModel;

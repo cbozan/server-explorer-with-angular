@@ -34,8 +34,9 @@ export class ServerComponent implements OnInit{
     })
   }
 
-  search(searchText: string) {
-    this.searchText = searchText;
+  search(event) {
+    this.searchText = event.target.value;
+    console.log("search gerçekleşti: ", this.searchText);
   }
 
   sort(scope: string) {

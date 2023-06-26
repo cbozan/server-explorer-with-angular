@@ -24,9 +24,9 @@ export class SignUpComponent implements OnInit{
     const password = this.signUpForm.value['password'];
     const passwordAgain = this.signUpForm.value['passwordAgain'];
 
-    console.log("serverName: ", serverName);
-    console.log("password: ", password);
-    console.log("passwordAgain: ", passwordAgain);
+    // console.log("serverName: ", serverName);
+    // console.log("password: ", password);
+    // console.log("passwordAgain: ", passwordAgain);
 
     if (password === passwordAgain) {
       this.loginService.signUp({serverName, password})
@@ -39,7 +39,7 @@ export class SignUpComponent implements OnInit{
         })
     } else {
       // add form error message
-      console.log("Passwords do not match");
+      alert("Passwords do not match");
     }
 
 

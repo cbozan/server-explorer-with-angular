@@ -7,7 +7,10 @@
         class="form-control"
         id="server-name"
         name="serverName"
-        ngModel>
+        ngModel
+        #name="ngModel"
+        required>
+      <span class="text-danger" *ngIf="name.touched && name.invalid">server name is required</span>
     </div>
     <div class="from-group">
       <label for="password">Password</label>
@@ -16,7 +19,9 @@
         class="form-control"
         id="password"
         name="password"
-        ngModel>
+        ngModel #pass="ngModel"
+        required>
+      <span class="text-danger" *ngIf="pass.touched && pass.invalid">password is required</span>
     </div>
     <div class="from-group">
       <label for="password-again">Password Again</label>
@@ -25,8 +30,10 @@
         class="form-control"
         id="password-again"
         name="passwordAgain"
-        ngModel>
+        ngModel #passAgain="ngModel"
+        required>
+      <span class="text-danger" *ngIf="passAgain.touched && passAgain.invalid">password is required</span>
     </div>
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Sign Up</button>
   </form>
 </div>
