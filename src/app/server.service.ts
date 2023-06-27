@@ -41,8 +41,7 @@ export class ServerService implements OnInit{
     sessionStorage.setItem("activeServer", JSON.stringify(activeServer));
   }
 
-  getActiveServer() {
-    console.log(JSON.parse(sessionStorage.getItem("activeServer")));
+  getActiveServer(): ServerModel {
     return JSON.parse(sessionStorage.getItem("activeServer"));
   }
 

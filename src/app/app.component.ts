@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ServerService]
+  providers: []
 })
 export class AppComponent {
 

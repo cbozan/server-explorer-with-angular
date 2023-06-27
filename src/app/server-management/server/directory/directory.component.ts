@@ -24,7 +24,6 @@ export class DirectoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("init: ", this.directory);
     this.name = this.directory.name;
     this.id = this.directory.id;
     this.date = this.directory.date;

@@ -13,6 +13,7 @@ import { ServerComponent } from './server-management/server/server.component';
 import { DirectoryComponent } from './server-management/server/directory/directory.component';
 import {SortingPipe} from "./server-management/server/sorting.pipe";
 import {FilterPipe} from "./server-management/server/filter.pipe";
+import {ServerService} from "./server.service";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {FilterPipe} from "./server-management/server/filter.pipe";
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ServerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
